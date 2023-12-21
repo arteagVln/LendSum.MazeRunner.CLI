@@ -1,15 +1,7 @@
-﻿using LendSum.MazeRunner.CLI.Clients;
-using LendSum.MazeRunner.CLI.DTOs;
+﻿using LendSum.MazeRunner.CLI.DTOs;
 using LendSum.MazeRunner.CLI.Enums;
 using LendSum.MazeRunner.CLI.Models;
 using LendSum.MazeRunner.CLI.Repository;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace LendSum.MazeRunner.CLI
 {
@@ -104,21 +96,6 @@ namespace LendSum.MazeRunner.CLI
             cords.RemoveAt(cords.Count - 1);
 
             return false;
-        }
-
-        private GameOperationResponse GoBack(string mazeUid, string gameUid, string previousMove)
-        {
-            switch (previousMove)
-            {
-                case "GoNorth":
-                    return _mazeRunnerRepository.MoveSouth(mazeUid, gameUid);
-                case "GoEast":
-                    return _mazeRunnerRepository.MoveWest(mazeUid, gameUid);
-                case "GoSouth":
-                    return _mazeRunnerRepository.MoveNorth(mazeUid, gameUid);
-                default:
-                    return _mazeRunnerRepository.MoveEast(mazeUid, gameUid);
-            }
         }
 
         private static bool IsValid(GameOperationResponse status, MazeCord currentCord, string direction, List<MazeCord> cords)
